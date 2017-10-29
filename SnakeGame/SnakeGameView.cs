@@ -12,7 +12,7 @@ namespace SnakeGame
 {
     public class SnakeGameView : Game, View
     {
-        private int _w;
+        private int _w; 
         private int _h;
         private SnakeGameController controller = null;
         Texture2D snakeTile = null;
