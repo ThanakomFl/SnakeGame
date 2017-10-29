@@ -25,6 +25,8 @@ namespace SnakeGame
 
         public SnakeGameView(int w, int h)
         {
+            w *= 2;
+            h *= 2;
             _w = w;
             _h = h;
             try

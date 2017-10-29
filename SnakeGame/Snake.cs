@@ -15,6 +15,7 @@ namespace SnakeGame
         protected SnakeGameModel sgm = null;
         protected SnakeGameView sgv = null;
         protected SnakeGameController sgc = null;
+        public Boolean isdouble = false;
 
         protected static Snake _instance = null;
 
@@ -116,6 +117,11 @@ namespace SnakeGame
                 sgv.Dispose();
                 sgv.Exit();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            isdouble = true;
         }
     }
 }

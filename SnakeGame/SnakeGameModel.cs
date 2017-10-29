@@ -26,6 +26,8 @@ namespace SnakeGame
         public const int MOVE_UP = 1;
         public const int MOVE_RIGHT = 2;
         public const int MOVE_DOWN = 3;
+        public const int PAUSE_DOWN = 4;
+        public const int PAUSE_UP = 5;
 
         public const int BOARD_EMPTY = 0;
         public const int BOARD_SNAKE = 1;
@@ -69,6 +71,8 @@ namespace SnakeGame
 
         public SnakeGameModel(int w, int h)
         {
+            w *= 2;
+            h *= 2;
             boardWidth = w; // width = w = X = col
             boardHeight = h;// height = h = Y = row
             _board = new int[w, h]; // order is X,Y
@@ -120,10 +124,10 @@ namespace SnakeGame
             int x, y;
             do
             {
-                x = rand.Next(boardWidth);
-                y = rand.Next(boardHeight);
+                x = rand.Next(boardWidth-2);
+                y = rand.Next(boardHeight-2);
             } while (isSnakeBody(x, y));
-            _board[x, y] = BOARD_FOOD;
+            _board[x+1, y+1] = BOARD_FOOD;
         }
 
         protected bool isSnakeBody(int x, int y)
@@ -166,12 +170,14 @@ namespace SnakeGame
             if (isSnakeBody(curHeadX, curHeadY))
             {
                 _isHit = true;
+                _speed = 1; 
                 return;
             }
             // hit wall?
             if (_board[curHeadX, curHeadY] == BOARD_WALL)
             {
                 _isHit = true;
+                _speed = 1;
                 return;
             }
             // hit food?

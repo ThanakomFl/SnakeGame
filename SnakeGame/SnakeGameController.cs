@@ -11,7 +11,7 @@ namespace SnakeGame
     public class SnakeGameController : Controller
     {
         Timer timer;
-
+        public Boolean ispause = false;
         public SnakeGameController()
         {
             // update the board every one second;
@@ -41,6 +41,22 @@ namespace SnakeGame
             else if(keys.Contains(Keys.Right))
             {
                 direction = SnakeGameModel.MOVE_RIGHT;
+            }
+            else if (keys.Contains(Keys.Space))
+            {
+                if (!ispause)
+                {
+                    Stop();
+                    ispause = true;
+                    System.Threading.Thread.Sleep((int)System.TimeSpan.FromSeconds(0.25).TotalMilliseconds);
+            }
+                else
+                {
+                    Start();
+                    ispause = false;
+                    System.Threading.Thread.Sleep((int)System.TimeSpan.FromSeconds(0.25).TotalMilliseconds);
+                }
+                
             }
             // Find all snakeboard model we know
             if (direction == -1) return;
